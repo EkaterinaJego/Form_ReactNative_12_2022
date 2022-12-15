@@ -21,20 +21,28 @@ const Form = () => {
     <SafeAreaView>
       <ScrollView style={{ marginLeft: 20, marginRight: 20 }}>
         <View>
-          <TouchableOpacity>
-            <Text style={styles.nameofthepage}>LOG IN</Text>
-          </TouchableOpacity>
+          <Text style={styles.nameofthepage1}>Sing up </Text>
+          <Text style={styles.nameofthepage2}>
+            Sign up for continue explore!
+          </Text>
+          <View style={styles.socialButtonsView}>
+            <SocialButton
+              style={styles.socialbutton}
+              imageSource={require("./assets/facebook.png")}
+              onPress={() => {}} // add link to FB
+            />
+            <SocialButton
+              style={styles.socialbutton}
+              imageSource={require("./assets/twitter.png")}
+              onPress={() => {}} // add link to Twitter
+            />
 
-          <SocialButton
-            text="Continue with Facebook"
-            imageSource={require("./assets/facebook.png")}
-            onPress={() => {}}
-          />
-          <SocialButton
-            text="Continue with Twitter"
-            imageSource={require("./assets/twitter.png")}
-            onPress={() => {}}
-          />
+            <SocialButton
+              style={styles.socialbutton}
+              imageSource={require("./assets/apple.png")}
+              onPress={() => {}} // add link to Apple
+            />
+          </View>
 
           <View style={styles.textinput}>
             <TextInput
@@ -76,8 +84,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  nameofthepage: {
-    fontSize: 20,
+  nameofthepage1: {
+    fontSize: 25,
+    color: "black",
+    marginTop: 100,
+    marginBottom: 20,
+  },
+
+  nameofthepage2: {
+    fontSize: 18,
     color: "grey",
     marginBottom: 60,
   },
@@ -107,6 +122,22 @@ const styles = StyleSheet.create({
     borderColor: "red",
     borderWidth: 2,
     borderRadius: 20,
+  },
+
+  socialButtonsView: {
+    flexDirection: "row",
+    width: "100%",
+  },
+
+  socialbutton: {
+    backgroundColor: "white",
+    alignContent: "flex-end",
+    justifyContent: "center",
+    marginBottom: 50,
+    paddingLeft: 30,
+    paddingRight: 10,
+    width: 10,
+    height: 10,
   },
 
   registerbutton: {
