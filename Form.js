@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import LoginScreen, { SocialButton } from "react-native-login-screen";
 import {
   StyleSheet,
   Text,
@@ -21,7 +21,20 @@ const Form = () => {
     <SafeAreaView>
       <ScrollView style={{ marginLeft: 20, marginRight: 20 }}>
         <View>
-          <Text style={styles.nameofthepage}>LOG IN</Text>
+          <TouchableOpacity>
+            <Text style={styles.nameofthepage}>LOG IN</Text>
+          </TouchableOpacity>
+
+          <SocialButton
+            text="Continue with Facebook"
+            imageSource={require("./assets/facebook.png")}
+            onPress={() => {}}
+          />
+          <SocialButton
+            text="Continue with Twitter"
+            imageSource={require("./assets/twitter.png")}
+            onPress={() => {}}
+          />
 
           <View style={styles.textinput}>
             <TextInput
