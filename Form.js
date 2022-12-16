@@ -12,10 +12,10 @@ import {
 } from "react-native";
 
 const Form = () => {
-  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-  const [allChamps, setAllChamps] = useState(true);
+  const [allInfo, setAllInfo] = useState(true);
 
   return (
     <SafeAreaView>
@@ -26,44 +26,65 @@ const Form = () => {
             Sign up for continue explore!
           </Text>
           <View style={styles.socialButtonsView}>
-            <SocialButton
-              style={styles.socialbutton}
-              imageSource={require("./assets/facebook.png")}
-              onPress={() => {}} // add link to FB
-            />
-            <SocialButton
-              style={styles.socialbutton}
-              imageSource={require("./assets/twitter.png")}
-              onPress={() => {}} // add link to Twitter
-            />
+            <View style={styles.socialButtonViewEach}>
+              <SocialButton
+                style={styles.socialbutton}
+                imageSource={require("./assets/facebook.png")}
+                onPress={() => {}} // add link to FB
+              />
+            </View>
 
-            <SocialButton
-              style={styles.socialbutton}
-              imageSource={require("./assets/apple.png")}
-              onPress={() => {}} // add link to Apple
-            />
+            <View style={styles.socialButtonViewEach}>
+              <SocialButton
+                style={styles.socialbutton}
+                imageSource={require("./assets/twitter.png")}
+                onPress={() => {}} // add link to Twitter
+              />
+            </View>
+            <View style={styles.socialButtonViewEach}>
+              <SocialButton
+                style={styles.socialbutton}
+                imageSource={require("./assets/apple.png")}
+                onPress={() => {}} // add link to Apple
+              />
+            </View>
           </View>
 
           <View style={styles.textinput}>
+            <Text style={styles.textinputText}>Username</Text>
             <TextInput
-              placeholder="email"
-              style={styles.textinputeach}
+              style={styles.textinputText}
               autoCapitalize="none"
               onChangeText={(text) => {
-                setEmail(text);
+                setUserName(text);
               }}
-              value={email}
+              value={userName}
             ></TextInput>
+            <Text style={styles.textinputText}>Password</Text>
             <TextInput
-              placeholder="password"
               autoCapitalize="none"
-              style={styles.textinputeach}
+              style={styles.textinputText}
               onChangeText={(text) => {
                 setPassword(text);
               }}
               secureTextEntry={true}
               value={password}
             ></TextInput>
+            <Text style={styles.textinputText}>Retype password</Text>
+            <TextInput
+              autoCapitalize="none"
+              style={styles.textinputText}
+              onChangeText={(text) => {
+                setCheckPassword(text);
+              }}
+              secureTextEntry={true}
+              value={checkPassword}
+            ></TextInput>
+          </View>
+          <View style={styles.button}>
+            <TouchableOpacity>
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
@@ -101,10 +122,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
-  textinputeach: {
-    marginBottom: 30,
-    borderBottomColor: "pink",
+  textinputText: {
+    marginBottom: 20,
+    borderBottomColor: "grey",
     borderBottomWidth: 1,
+    color: "grey",
   },
 
   fillfields: {
@@ -116,12 +138,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
     alignItems: "center",
     justifyContent: "center",
-
-    width: "50%",
+    width: "100%",
     height: 40,
-    borderColor: "red",
+    borderColor: "blue",
+    backgroundColor: "blue",
     borderWidth: 2,
-    borderRadius: 20,
+    borderRadius: 10,
+  },
+
+  buttonText: {
+    color: "white",
+    fontSize: 16,
   },
 
   socialButtonsView: {
@@ -129,15 +156,28 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 
+  socialButtonViewEach: {
+    borderColor: "black",
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    backgroundColor: "#CECDCD",
+    marginBottom: 40,
+    marginRight: 20,
+    width: 50,
+    height: 50,
+  },
+
   socialbutton: {
-    backgroundColor: "white",
-    alignContent: "flex-end",
+    backgroundColor: "#CECDCD",
     justifyContent: "center",
-    marginBottom: 50,
+    marginTop: "35%",
     paddingLeft: 30,
     paddingRight: 10,
-    width: 10,
-    height: 10,
+    width: "auto",
+    height: "auto",
+    alignItems: "center",
   },
 
   registerbutton: {
