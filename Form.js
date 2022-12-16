@@ -15,7 +15,21 @@ const Form = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-  const [allInfo, setAllInfo] = useState(true);
+  const [allInfo, setAllInfo] = useState(false);
+  const [inputDone, setInputDone] = useState(false);
+
+  const handleSignUp = () => {
+    if (userName && password && checkPassword) {
+      if (password !== checkPassword) {
+        console.log("Error!");
+      } else {
+        console.log("It's ok");
+        setAllInfo(true);
+      }
+    } else {
+      console.log("Not all info is collected");
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -50,22 +64,26 @@ const Form = () => {
             </View>
           </View>
 
-          <View style={styles.textinput}>
+          <View style={styles.textinputMain}>
             <Text style={styles.textinputText}>Username</Text>
-            <TextInput
-              style={styles.textinputText}
-              autoCapitalize="none"
-              onChangeText={(text) => {
-                setUserName(text);
-              }}
-              value={userName}
-            ></TextInput>
+            <View style={styles.textinput}>
+              <TextInput
+                style={styles.textinputText}
+                autoCapitalize="none"
+                onChangeText={(text) => {
+                  setUserName(text);
+                  setInputDone(true);
+                }}
+                value={userName}
+              ></TextInput>
+            </View>
             <Text style={styles.textinputText}>Password</Text>
             <TextInput
               autoCapitalize="none"
               style={styles.textinputText}
               onChangeText={(text) => {
                 setPassword(text);
+                setInputDone(true);
               }}
               secureTextEntry={true}
               value={password}
@@ -82,7 +100,7 @@ const Form = () => {
             ></TextInput>
           </View>
           <View style={styles.button}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={handleSignUp}>
               <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
           </View>
@@ -116,6 +134,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "grey",
     marginBottom: 60,
+  },
+
+  textinputMain: {
+    width: "100%",
   },
 
   textinput: {
