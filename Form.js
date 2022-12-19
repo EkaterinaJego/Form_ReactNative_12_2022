@@ -18,19 +18,21 @@ const Form = () => {
   const [allInfo, setAllInfo] = useState(false);
   const [inputDone, setInputDone] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSignUp = () => {
     if (userName && password && checkPassword) {
       if (password !== checkPassword) {
-        setErrorMessage("Password error");
+        setMessage("Password error");
+        setIsVisible(true);
         setInputDone(true);
       } else {
-        console.log("It's ok");
+        setIsVisible(true)
+        setMessage("It's ok");
         setAllInfo(true);
       }
     } else {
-      setErrorMessage("Not all info is collected");
+      setMessage("Not all info is collected");
       setIsVisible(true);
     }
   };
@@ -112,11 +114,13 @@ const Form = () => {
             <Modal
               isVisible={isVisible}
               coverScreen={true}
+              onBackdropPress={() => setIsVisible(!isVisible)}
+              swipeDirection={"left"}
               backdropOpacity={0.4}
               style={styles.modal}
             >
               <View style={{ flex: 1 }}>
-                <Text style={styles.modalText}>{errorMessage}</Text>
+                <Text style={styles.modalText}>{message}</Text>
               </View>
             </Modal>
           </View>
