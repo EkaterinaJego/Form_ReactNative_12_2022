@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import LoginScreen, { SocialButton } from "react-native-login-screen";
+import { SocialButton } from "react-native-login-screen";
+import Modal from "react-native-modal";
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
   SafeAreaView,
-  Image,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -17,17 +17,21 @@ const Form = () => {
   const [checkPassword, setCheckPassword] = useState("");
   const [allInfo, setAllInfo] = useState(false);
   const [inputDone, setInputDone] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUp = () => {
     if (userName && password && checkPassword) {
       if (password !== checkPassword) {
-        console.log("Error!");
+        setErrorMessage("Password error");
+        setInputDone(true);
       } else {
         console.log("It's ok");
         setAllInfo(true);
       }
     } else {
-      console.log("Not all info is collected");
+      setErrorMessage("Not all info is collected");
+      setIsVisible(true);
     }
   };
 
@@ -103,6 +107,18 @@ const Form = () => {
             <TouchableOpacity onPress={handleSignUp}>
               <Text style={styles.buttonText}>Sign Up</Text>
             </TouchableOpacity>
+          </View>
+          <View>
+            <Modal
+              isVisible={isVisible}
+              coverScreen={true}
+              backdropOpacity={0.4}
+              style={styles.modal}
+            >
+              <View style={{ flex: 1 }}>
+                <Text style={styles.modalText}>{errorMessage}</Text>
+              </View>
+            </Modal>
           </View>
         </View>
       </ScrollView>
@@ -206,5 +222,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 18,
     color: "grey",
+  },
+
+  modal: {
+    backgroundColor: "blue",
+    width: "100%",
+    borderRadius: 10,
+    paddingTop: "10%",
+    alignItems: "center",
+    marginLeft: "0%",
+    marginTop: "150%",
+  },
+
+  modalText: {
+    color: "white",
+    fontSize: 20,
   },
 });
